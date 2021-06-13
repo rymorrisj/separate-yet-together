@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PointAndShoot : MonoBehaviour
 {
@@ -67,8 +68,6 @@ public class PointAndShoot : MonoBehaviour
             return;
         }
 
-        Camera.main.GetComponent<PlayerControllerSwitcher>().disablePlayer(player);
-
         GameObject newPlayer = Instantiate(player) as GameObject;
         newPlayer.tag = "NewPlayer";
 
@@ -79,6 +78,8 @@ public class PointAndShoot : MonoBehaviour
         newPlayer.GetComponent<Rigidbody2D>().velocity = direction * playerFireSpeed;
 
         GetComponent<BlobMass>().LoseMass(playerMassCost);
+
+        Camera.main.GetComponent<PlayerControllerSwitcher>().disablePlayer(gameObject);
     }
 
     private Vector3 GetWorldPosition(Vector3 screenPosition, Camera worldCamera)

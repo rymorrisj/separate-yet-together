@@ -25,10 +25,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            if (gameObject.name == "BlobCore")
-            {
-                isOnFloor = true;
-            }
+            isOnFloor = true;
         }
     }
 }

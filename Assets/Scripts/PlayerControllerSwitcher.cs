@@ -11,17 +11,15 @@ public class PlayerControllerSwitcher : MonoBehaviour
     {
         if (Input.GetButton("Submit") && isSwitchingCharacter != true)
         {
-            Debug.Log("switching");
-            if (players.Count >= 1)
+            if (players.Count <= 0)
             {
-                Debug.Log("return switching");
                 return;
             }
             isSwitchingCharacter = true;
             GameObject activePlayer = players[currentPlayer];
             disablePlayer(activePlayer);
 
-            if (currentPlayer == players.Count)
+            if (currentPlayer + 1 == players.Count)
             {
                 currentPlayer = 0;
             }
@@ -29,12 +27,8 @@ public class PlayerControllerSwitcher : MonoBehaviour
             {
                 currentPlayer++;
             }
-
             activePlayer = players[currentPlayer];
-            Debug.Log("activated Player");
-            activePlayer.GetComponent<PlayerJump>().enabled = true;
-            activePlayer.GetComponent<PointAndShoot>().enabled = true;
-            activePlayer.GetComponent<PlayerController>().enabled = true;
+            activePlayer.GetComponent<TheEnabler>().pleaseStart(activePlayer.name);
         }
 
         if (Input.GetButton("Submit") != true)
@@ -50,10 +44,7 @@ public class PlayerControllerSwitcher : MonoBehaviour
 
     public void disablePlayer(GameObject player)
     {
-        Debug.Log("Disabled Player");
-        player.GetComponent<PointAndShoot>().enabled = false;
-        player.GetComponent<PlayerController>().enabled = false;
-        player.GetComponent<PlayerJump>().enabled = false;
+        player.GetComponent<TheEnabler>().pleaseStop(player.name);
     }
 
     public GameObject GetActivePlayer()
