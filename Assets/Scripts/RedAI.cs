@@ -80,7 +80,6 @@ public class RedAI : MonoBehaviour
 
         if ((mood == MoodEnum.attack) && (AttackReset < 0))
         {
-            Debug.Log("going to pounce");
             Pounce();
             Attacking = true;
         }

@@ -22,11 +22,4 @@ public class Dead : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private Vector3 GetWorldPosition(Vector3 screenPosition, Camera worldCamera)
-    {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
-        worldPosition.z = 0f;
-        return worldPosition;
-    }
 }

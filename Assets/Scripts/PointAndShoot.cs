@@ -11,6 +11,7 @@ public class PointAndShoot : MonoBehaviour
     public GameObject bulletStart;
 
     public float bulletSpeed = 60.0f;
+    public int bulletMassCost = 1;
 
     private Vector3 target;
 
@@ -44,6 +45,8 @@ public class PointAndShoot : MonoBehaviour
         b.transform.position = bulletStart.transform.position;
         b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
         b.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+
+        GetComponent<BlobMass>().LoseMass(bulletMassCost);
     }
 
     private Vector3 GetWorldPosition(Vector3 screenPosition, Camera worldCamera)

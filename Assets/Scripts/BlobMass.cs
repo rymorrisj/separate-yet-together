@@ -16,8 +16,8 @@ public class BlobMass : MonoBehaviour
         if (objectTag == "Player")
         {
             isPlayer = true;
-            mass = 10;
-            massToDrop = 1;
+            mass = 20;
+            massToDrop = 2;
         }
         else if (objectTag == "Enemy")
         {
@@ -49,6 +49,12 @@ public class BlobMass : MonoBehaviour
     public void LoseMass(int loseValue)
     {
         mass -= loseValue;
+        if (numOfBlobs % 5 != 0)
+        {
+            Vector3 scaleChange = new Vector3(-0.01f, -0.01f, -0.01f);
+            gameObject.transform.localScale -= -scaleChange;
+        }
+
         if (IsDead())
         {
             GetComponent<Dead>().NoHealth(gameObject);
@@ -58,6 +64,11 @@ public class BlobMass : MonoBehaviour
     public void GainMass(int gainValue)
     {
         mass += gainValue;
+        if (numOfBlobs % 5 != 0)
+        {
+            Vector3 scaleChange = new Vector3(0.1f, 0.1f, 0.1f);
+            gameObject.transform.localScale += scaleChange;
+        }
     }
 
     public GameObject DropMass()
