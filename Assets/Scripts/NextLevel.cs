@@ -7,10 +7,11 @@ public class NextLevel : MonoBehaviour
 {
     public string WhatlvlNext;
     private bool canUse = false;
+    public GameObject boss;
 
     private void Update()
     {
-        if (canUse)
+        if (canUse && !boss)
         {
             if (Input.GetKeyDown("e"))
             {
