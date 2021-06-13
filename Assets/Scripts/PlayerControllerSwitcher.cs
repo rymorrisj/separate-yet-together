@@ -28,7 +28,7 @@ public class PlayerControllerSwitcher : MonoBehaviour
                 currentPlayer++;
             }
             activePlayer = players[currentPlayer];
-            activePlayer.GetComponent<TheEnabler>().pleaseStart(activePlayer.name);
+            activePlayer.GetComponent<TheEnabler>().pleaseStart();
         }
 
         if (Input.GetButton("Submit") != true)
@@ -44,7 +44,7 @@ public class PlayerControllerSwitcher : MonoBehaviour
 
     public void disablePlayer(GameObject player)
     {
-        player.GetComponent<TheEnabler>().pleaseStop(player.name);
+        player.GetComponent<TheEnabler>().pleaseStop();
     }
 
     public GameObject GetActivePlayer()

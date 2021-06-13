@@ -22,6 +22,7 @@ public class BlobMass : MonoBehaviour
         }
         else if (objectTag == "NewPlayer")
         {
+            isPlayer = true;
             mass = 5;
             massToDrop = 2;
             numOfBlobs = 1;

@@ -4,30 +4,21 @@ using UnityEngine;
 
 public class TheEnabler : MonoBehaviour
 {
-    private GameObject THISGUY;
+    public void pleaseStop()
+    {
 
-    private void Start()
-    {
-        gameObject.name = GetInstanceID().ToString();
-        THISGUY = GameObject.Find(gameObject.name);
-    }
-    public void pleaseStop(string name)
-    {
-        if (name == THISGUY.name)
-        {
-            THISGUY.GetComponent<PointAndShoot>().enabled = false;
-            THISGUY.GetComponent<PlayerController>().enabled = false;
-            THISGUY.GetComponent<PlayerJump>().enabled = false;
-        }
+        GetComponent<PointAndShoot>().enabled = false;
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<PlayerJump>().enabled = false;
+
     }
 
-    public void pleaseStart(string name)
+    public void pleaseStart()
     {
-        if (name == THISGUY.name)
-        {
-            THISGUY.GetComponent<PointAndShoot>().enabled = true;
-            THISGUY.GetComponent<PlayerController>().enabled = true;
-            THISGUY.GetComponent<PlayerJump>().enabled = true;
-        }
+
+        GetComponent<PointAndShoot>().enabled = true;
+        GetComponent<PlayerController>().enabled = true;
+        GetComponent<PlayerJump>().enabled = true;
+
     }
 }
