@@ -6,15 +6,25 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     public string WhatlvlNext;
-    // Update is called once per frame
-    private void OnTriggerStay2D(Collider2D other)
+    private bool canUse = false;
+
+    private void Update()
     {
-        if (other.gameObject.tag == "Player")
+        if (canUse)
         {
             if (Input.GetKeyDown("e"))
             {
                 SceneManager.LoadScene(WhatlvlNext);
             }
+        }
+
+    }
+    // Update is called once per frame
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            canUse = true;
         }
     }
 }
