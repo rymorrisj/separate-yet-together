@@ -17,9 +17,9 @@ public class Dead : MonoBehaviour
         if (type.tag == "Enemy")
         {
             GameObject massToDrop = GetComponent<BlobMass>().DropMass();
-            Camera gameCamera = Camera.main;
-            Vector3 enemyPosition = GetWorldPosition(gameObject.transform.position, gameCamera);
+            Vector3 enemyPosition = gameObject.transform.position;
             massToDrop.transform.position = enemyPosition;
+            Destroy(gameObject);
         }
     }
 

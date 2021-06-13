@@ -10,19 +10,20 @@ public class Value : MonoBehaviour
         value = newValue;
     }
 
-    private void Start()
-    {
-        Physics2D.IgnoreLayerCollision(11, 12);
-        Physics2D.IgnoreLayerCollision(11, 13);
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
-
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<BlobMass>().GainMass(value);
+            GameObject player = collision.gameObject;
+            if (player.name == "BlobPoints")
+            {
+                player.GetComponentInParent<BlobMass>().GainMass(value);
+            }
+            else
+            {
+                player.GetComponent<BlobMass>().GainMass(value);
+            }
+            Destroy(gameObject);
         }
     }
 }
