@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreLayerCollision(8, 7);
     }
 
     private void FixedUpdate()

@@ -18,6 +18,16 @@ public class BlobMass : MonoBehaviour
             isPlayer = true;
             mass = 20;
             massToDrop = 2;
+            Camera.main.GetComponent<PlayerControllerSwitcher>().AddPlayer(gameObject);
+        }
+        else if (objectTag == "NewPlayer")
+        {
+            mass = 5;
+            massToDrop = 2;
+            numOfBlobs = 1;
+            Vector3 scaleChange = new Vector3(-0.5f, -0.5f, -0.5f);
+            gameObject.transform.localScale -= -scaleChange;
+            Camera.main.GetComponent<PlayerControllerSwitcher>().AddPlayer(gameObject);
         }
         else if (objectTag == "Enemy")
         {
@@ -76,5 +86,11 @@ public class BlobMass : MonoBehaviour
         GameObject mass = Instantiate(massPrefab) as GameObject;
         mass.GetComponent<Value>().SetValue(massToDrop);
         return mass;
+    }
+
+    public void SetMassState(int newMass)
+    {
+        mass = newMass;
+        numOfBlobs = mass / 5;
     }
 }

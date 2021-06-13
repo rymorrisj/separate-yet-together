@@ -11,7 +11,9 @@ public class PointAndShoot : MonoBehaviour
     public GameObject bulletStart;
 
     public float bulletSpeed = 60.0f;
+    public float playerFireSpeed = 180.0f;
     public int bulletMassCost = 1;
+    public int playerMassCost = 5;
 
     private Vector3 target;
 
@@ -38,6 +40,14 @@ public class PointAndShoot : MonoBehaviour
             direction.Normalize();
             fireBullet(direction, angle);
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            float distance = aimDireciton.magnitude;
+            Vector2 direction = aimDireciton / distance;
+            direction.Normalize();
+            firePlayer(direction, angle, player);
+        }
     }
     void fireBullet(Vector2 direction, float angle)
     {
@@ -49,10 +59,40 @@ public class PointAndShoot : MonoBehaviour
         GetComponent<BlobMass>().LoseMass(bulletMassCost);
     }
 
+    void firePlayer(Vector2 direction, float angle, GameObject player)
+    {
+        int lives = GetComponent<BlobMass>().numOfBlobs;
+        if (lives <= 1)
+        {
+            return;
+        }
+
+        Camera.main.GetComponent<PlayerControllerSwitcher>().disablePlayer(player);
+
+        GameObject newPlayer = Instantiate(player) as GameObject;
+        newPlayer.tag = "NewPlayer";
+
+        Physics2D.IgnoreLayerCollision(8, 8);
+
+        newPlayer.transform.position = bulletStart.transform.position;
+        newPlayer.transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
+        newPlayer.GetComponent<Rigidbody2D>().velocity = direction * playerFireSpeed;
+
+        GetComponent<BlobMass>().LoseMass(playerMassCost);
+    }
+
     private Vector3 GetWorldPosition(Vector3 screenPosition, Camera worldCamera)
     {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
-        worldPosition.z = 0f;
-        return worldPosition;
+        if (worldCamera)
+        {
+            Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
+            worldPosition.z = 0f;
+            return worldPosition;
+        }
+        else
+        {
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition); worldPosition.z = 0f;
+            return worldPosition;
+        }
     }
 }
