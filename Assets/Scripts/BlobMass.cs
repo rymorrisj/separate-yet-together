@@ -9,6 +9,22 @@ public class BlobMass : MonoBehaviour
 
     private void Update()
     {
-        numOfBlobs = mass / 5;
+
+        if (isDead())
+        {
+            // TODO animation
+            // restart level
+            GetComponent<Dead>().NoHealth();
+        }
+        else
+        {
+            numOfBlobs = mass / 5;
+        }
+    }
+
+    private bool isDead()
+    {
+        bool died = mass <= 0;
+        return died;
     }
 }
