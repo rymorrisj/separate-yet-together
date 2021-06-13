@@ -6,6 +6,8 @@ public class EmojiCaller : MonoBehaviour
 {
     private float parentX;
     private float parentY;
+    public float offsetX;
+    public float offsetY;
     public GameObject StuckTo;
     public Sprite sprite1;
     public Sprite sprite2;
@@ -21,20 +23,22 @@ public class EmojiCaller : MonoBehaviour
         parentX = StuckTo.GetComponent<Transform>().position.x;
         parentY = StuckTo.GetComponent<Transform>().position.y;
 
+
         //stop rotating
-        transform.position = new Vector2(parentX + 4, parentY + 4);
+        transform.position = new Vector2(parentX + offsetX, parentY + offsetY);
         transform.eulerAngles = new Vector3(0, 0, 0);
-        GetComponent<SpriteRenderer>().sprite = null;
+
+
     }
     // clear sprite
-    void shownone()
+    public void shownone()
     { GetComponent<SpriteRenderer>().sprite = null; }
     // trigger to set the sprite on the renderer
-    void show1()
+    public void show1()
     { GetComponent<SpriteRenderer>().sprite = sprite1; }
-    void show2()
+    public void show2()
     { GetComponent<SpriteRenderer>().sprite = sprite2; }
-    void show3()
+    public void show3()
     { GetComponent<SpriteRenderer>().sprite = sprite3; }
 
 }
