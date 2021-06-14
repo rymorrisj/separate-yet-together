@@ -20,6 +20,9 @@ Mouse2 (Right-click) to separate. Careful it costs mass (health)
 
 Enter to switch between blobs! (You have to press it more than once to cycle)
 
+# Planning
+Used Miro for planning and prep: https://miro.com/app/board/o9J_l_2Yfz4=/
+
 # Credits
 
 Assets: (Music) Dark Fantasy Studio, (Unity) Bullet, Simple Modern Crosshairs, (Emojis) openmoji-sprites, (Scripts) (youtube) Lonex, Binary Lunar, Code Monkey.
